@@ -8,7 +8,9 @@
     "test": "nx test"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@nestjs/microservices": "^9.2.1"
+  },
   "devDependencies": {
     "@nrwl/cli": "15.0.0",
     "@nrwl/nx-cloud": "latest",
