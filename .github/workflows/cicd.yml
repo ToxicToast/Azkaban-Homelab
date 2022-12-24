@@ -1,0 +1,33 @@
+name: CICD
+
+on:
+  push:
+    branches:
+      - [feature/**/*, feature/*]
+  pull_request:
+    branches:
+      - main
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: git fetch origin main
+      - name: Install dependencies
+        run: yarn install
+      - name: Test Apps
+        run: yarn run test:all
+      - name: E2E-Test Apps
+        run: yarn run e2e:all
+      - name: Build Apps
+        run: yarn run build:all
+      - name: Semantic release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        run: yarn run release
