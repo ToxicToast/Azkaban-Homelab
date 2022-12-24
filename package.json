@@ -56,5 +56,44 @@
     "prettier": "^2.6.2",
     "semantic-release": "^19.0.5",
     "typescript": "~4.9.4"
-  }
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ],
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "yarn.lock",
+          "README.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  },
+  "collectCoverage": true,
+  "coverageThreshold": {
+    "global": {
+      "branches": 50,
+      "functions": 75,
+      "lines": 75,
+      "statements": 75
+    }
+  },
+  "coverageDirectory": "../coverage"
 }
