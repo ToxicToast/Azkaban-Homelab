@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v3
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -20,12 +23,19 @@ jobs:
       - run: git fetch origin main
       - name: Install dependencies
         run: yarn install
+      - run: yarn run nx format:check
+        name: Check Format
+      - run: yarn run nx workspace-lint
+        name: Lint Workspace
       - name: Test Apps
-        run: yarn run test:all
+        run: yarn run nx test --all --target=test
       - name: E2E-Test Apps
-        run: yarn run e2e:all
+        run: yarn run nx --all --target=e2e
       - name: Build Apps
-        run: yarn run build:all
+        run: yarn run nx --all --target=build
+      - name: No Outdated Packages
+        if: github.ref == 'refs/heads/main'
+        run: yarn run outdated
       - name: Semantic release
         if: github.ref == 'refs/heads/main'
         env:

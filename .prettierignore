@@ -2,3 +2,8 @@
 
 /dist
 /coverage
+/.github
+/.github/workflows
+/.github/workflows/*.yml
+/.github/*.yml
+*.json
