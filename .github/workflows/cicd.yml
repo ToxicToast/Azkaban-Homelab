@@ -26,10 +26,6 @@ jobs:
         name: Check Format
       - run: yarn run nx workspace-lint
         name: Lint Workspace
-      - name: Test Apps
-        run: yarn run nx test --all --target=test
-      - name: E2E-Test Apps
-        run: yarn run nx --all --target=e2e
       - name: Build Apps
         run: yarn run nx --all --target=build
       - name: No Outdated Packages
