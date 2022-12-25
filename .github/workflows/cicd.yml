@@ -14,23 +14,33 @@ jobs:
         with:
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'npm'
-      - run: git fetch origin main
+
       - name: Install dependencies
         run: yarn install
-      - run: yarn run nx format:check
-        name: Check Format
-      - run: yarn run nx workspace-lint
-        name: Lint Workspace
+
+      - name: Check Format
+        run: yarn run nx format:check
+
+      - name: Lint Workspace
+        run: yarn run nx workspace-lint
+
       - name: Build Apps
-        run: yarn run nx --all --target=build
+        run: yarn run nx run-many --all --target=build
+
       - name: No Outdated Packages
         if: github.ref == 'refs/heads/main'
         run: yarn run outdated
+
+      - name: NX Report
+        if: github.ref == 'refs/heads/main'
+        run: yarn run nx report
+
       - name: Semantic release
         if: github.ref == 'refs/heads/main'
         env:
