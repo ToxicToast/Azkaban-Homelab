@@ -46,3 +46,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: yarn run release
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2.1.35
+        with:
+          languages: ['typescript']
+          external-repository-token: ${{ secrets.TOKEN_GITHUB }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2.1.31
