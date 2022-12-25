@@ -50,7 +50,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2.1.35
         with:
-          languages: ['typescript']
+          languages: 'typescript'
           external-repository-token: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Perform CodeQL Analysis
