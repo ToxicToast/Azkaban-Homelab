@@ -1151,7 +1151,7 @@
     "@nrwl/node" "15.4.1"
     enquirer "~2.3.6"
 
-"@nrwl/node@15.4.1":
+"@nrwl/node@15.4.1", "@nrwl/node@^15.4.1":
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/@nrwl/node/-/node-15.4.1.tgz#4fae06abdc07fe97835df9749649d9999c4c572f"
   integrity sha512-6/LdWprGDAd/EAT1lMTxeajN8oGBpjcXWV9fz/8eaipoKM0d1l83UQom2EQ0uHF0neLZsWwANDuTAeOltGWPJw==
