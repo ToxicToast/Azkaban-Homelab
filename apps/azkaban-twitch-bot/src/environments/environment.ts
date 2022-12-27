@@ -1,6 +1,8 @@
+import * as process from 'process';
+
 export const environment = {
   production: false,
-
+  PORT: Number(process.env.PORT) ?? 3333,
   client_id: process.env.client_id ?? '',
   client_secret: process.env.client_secret ?? '',
   refresh_token: process.env.refresh_token ?? '',
