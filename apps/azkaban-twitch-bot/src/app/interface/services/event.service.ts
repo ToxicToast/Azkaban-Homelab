@@ -6,12 +6,16 @@ import {
 } from '@nestjs/common';
 import { EventSubService } from '@azkaban/shared';
 import { rawDataSymbol } from '@twurple/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class EventService implements OnModuleInit, OnModuleDestroy {
   private readonly logger: Logger = new Logger(EventService.name);
 
-  constructor(private readonly eventSubService: EventSubService) {}
+  constructor(
+    private readonly eventSubService: EventSubService,
+    private readonly eventEmitter: EventEmitter2
+  ) {}
 
   async onModuleInit(): Promise<void> {
     await this.eventSubService.StaticEventProvider.start().then(() => {
@@ -29,16 +33,20 @@ export class EventService implements OnModuleInit, OnModuleDestroy {
 
   private async subscribeToMyEvents(): Promise<void> {
     const userId = '28004350';
-    await this.eventSubService.StaticEventProvider.subscribeToChannelFollowEvents(
-      userId,
-      (event) =>
-        this.logger.debug({
-          channelId: event.broadcasterId,
-          followerId: event.userId,
-          date: event.followDate,
-          debug: event[rawDataSymbol],
-        })
-    );
+    const follower =
+      await this.eventSubService.StaticEventProvider.subscribeToChannelFollowEvents(
+        userId,
+        async (event) => {
+          const broadcaster = await event.getBroadcaster();
+          //
+          this.eventEmitter.emit('channelFollowEvent', {
+            channelId: event.broadcasterId,
+            followerId: event.userId,
+            date: event.followDate,
+          });
+        }
+      );
+    this.logger.debug(await follower.getCliTestCommand());
     //
     await this.eventSubService.StaticEventProvider.subscribeToChannelRaidEventsFrom(
       userId,
@@ -61,31 +69,23 @@ export class EventService implements OnModuleInit, OnModuleDestroy {
         })
     );
     //
-    await this.eventSubService.StaticEventProvider.subscribeToStreamOnlineEvents(
-      userId,
-      async (event) => {
-        const stream = await event.getStream();
-        const broadcaster = await event.getBroadcaster();
-        //
-        this.logger.debug({
-          id: event.id,
-          channelId: event.broadcasterId,
-          type: event.type,
-          date: event.startDate,
-          stream: {
-            viewers: stream.viewers,
-            title: stream.title,
-            thumbnail: stream.thumbnailUrl,
-          },
-          broadcaster: {
-            broadcasterType: broadcaster.broadcasterType,
-            displayName: broadcaster.displayName,
-            type: broadcaster.type,
-          },
-          debug: event[rawDataSymbol],
-        });
-      }
-    );
+    const online =
+      await this.eventSubService.StaticEventProvider.subscribeToStreamOnlineEvents(
+        userId,
+        async (event) => {
+          const stream = await event.getStream();
+          //
+          this.eventEmitter.emit('streamOnlineEvent', {
+            id: event.id,
+            channelId: event.broadcasterId,
+            type: event.type,
+            date: event.startDate,
+            title: stream.title ?? '',
+            thumbnail: stream.thumbnailUrl ?? '',
+          });
+        }
+      );
+    this.logger.debug(await online.getCliTestCommand());
     //
     await this.eventSubService.StaticEventProvider.subscribeToStreamOfflineEvents(
       userId,
@@ -110,16 +110,14 @@ export class EventService implements OnModuleInit, OnModuleDestroy {
       userId,
       async (event) => {
         const stream = await event.getStream();
-        const broadcaster = await event.getBroadcaster();
         //
-        this.logger.debug({
+        this.eventEmitter.emit('streamOnlineEvent', {
           id: event.id,
           channelId: event.broadcasterId,
           type: event.type,
           date: event.startDate,
-          stream: stream,
-          broadcaster: broadcaster,
-          debug: event[rawDataSymbol],
+          title: stream.title ?? '',
+          thumbnail: stream.thumbnailUrl ?? '',
         });
       }
     );
