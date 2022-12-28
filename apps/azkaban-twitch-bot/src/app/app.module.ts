@@ -1,7 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './app.service';
 import { environment } from '../environments/environment';
+import {
+  ApiService,
+  AuthService,
+  ChatService,
+  EventSubService,
+} from '@azkaban/shared';
 import { BotService } from './bot.service';
+import { EventService } from './event.service';
 
 const config = [
   {
@@ -57,6 +63,14 @@ const config = [
 @Module({
   imports: [],
   controllers: [],
-  providers: [...config, AppService, BotService],
+  providers: [
+    ...config,
+    ChatService,
+    ApiService,
+    EventSubService,
+    AuthService,
+    BotService,
+    EventService,
+  ],
 })
 export class AppModule {}

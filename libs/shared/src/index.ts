@@ -5,3 +5,4 @@ export * from './lib/models';
 export * from './lib/modules';
 export * from './lib/types';
 export * from './lib/interceptions';
+export * from './lib/services';
