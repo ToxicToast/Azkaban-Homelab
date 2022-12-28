@@ -58,6 +58,12 @@ const config = [
       return environment.channels;
     },
   },
+  {
+    provide: 'SUBSCRIPTIONSECRET',
+    useFactory: () => {
+      return environment.subscriptionSecret;
+    },
+  },
 ];
 
 @Module({

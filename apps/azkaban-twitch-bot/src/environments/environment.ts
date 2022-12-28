@@ -11,4 +11,6 @@ export const environment = {
   scope: process.env?.scope?.split(',') ?? [],
   obtainment_timestamp: process.env.obtainment_timestamp ?? 0,
   channels: process.env?.channels?.split(',') ?? [],
+  subscriptionSecret:
+    process.env.subscription_secret ?? 'Azkaban-Twitch-Secret',
 };

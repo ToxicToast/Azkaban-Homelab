@@ -1,10 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiClient } from '@twurple/api';
-import { ClientCredentialsAuthProvider } from '@twurple/auth';
 
 @Injectable()
-export class ApiService {
+export class ApiService implements OnModuleInit {
   private readonly api: ApiClient;
   private readonly staticApi: ApiClient;
   private readonly clientCredentialApi: ApiClient;
@@ -19,6 +18,10 @@ export class ApiService {
     });
   }
 
+  async onModuleInit(): Promise<void> {
+    await this.removeSubs();
+  }
+
   get ApiProvider(): ApiClient {
     return this.api;
   }
@@ -28,7 +31,10 @@ export class ApiService {
   }
 
   get ClientCredentialApiProvider(): ApiClient {
-    this.clientCredentialApi.eventSub.deleteAllSubscriptions();
     return this.clientCredentialApi;
+  }
+
+  private async removeSubs(): Promise<void> {
+    await this.clientCredentialApi.eventSub.deleteAllSubscriptions();
   }
 }
