@@ -30,8 +30,11 @@ jobs:
       - name: Lint Workspace
         run: yarn run nx workspace-lint
 
+      - name: Lint Apps
+        run: yarn run affected:lint
+
       - name: Build Apps
-        run: yarn run nx run-many --all --target=build
+        run: yarn run affected:build
 
       - name: No Outdated Packages
         if: github.ref == 'refs/heads/main'
