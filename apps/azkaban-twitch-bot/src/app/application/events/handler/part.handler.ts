@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { PartEvent } from '../impl/part.event';
+import { PartEvent } from '../impl';
 import { Logger } from '@nestjs/common';
 
 @EventsHandler(PartEvent)

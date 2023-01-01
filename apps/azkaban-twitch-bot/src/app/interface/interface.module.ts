@@ -17,55 +17,55 @@ const config = [
   {
     provide: 'EXPIRESIN',
     useFactory: () => {
-      return environment.expires_in;
+      return environment.twtich.expires_in;
     },
   },
   {
     provide: 'OBTAINMENTTIMESTAMP',
     useFactory: () => {
-      return environment.obtainment_timestamp;
+      return environment.twtich.obtainment_timestamp;
     },
   },
   {
     provide: 'ACCESSTOKEN',
     useFactory: () => {
-      return environment.access_token;
+      return environment.twtich.access_token;
     },
   },
   {
     provide: 'REFRESHTOKEN',
     useFactory: () => {
-      return environment.refresh_token;
+      return environment.twtich.refresh_token;
     },
   },
   {
     provide: 'SCOPE',
     useFactory: () => {
-      return environment.scope;
+      return environment.twtich.scope;
     },
   },
   {
     provide: 'CLIENTID',
     useFactory: () => {
-      return environment.client_id;
+      return environment.twtich.client_id;
     },
   },
   {
     provide: 'CLIENTSECRET',
     useFactory: () => {
-      return environment.client_secret;
+      return environment.twtich.client_secret;
     },
   },
   {
     provide: 'CHANNELS',
     useFactory: () => {
-      return environment.channels;
+      return environment.twtich.channels;
     },
   },
   {
     provide: 'SUBSCRIPTIONSECRET',
     useFactory: () => {
-      return environment.subscriptionSecret;
+      return environment.twtich.subscriptionSecret;
     },
   },
 ];

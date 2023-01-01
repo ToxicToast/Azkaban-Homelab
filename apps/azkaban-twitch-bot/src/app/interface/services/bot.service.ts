@@ -17,12 +17,24 @@ export class BotService {
 
   private chatEvents(): void {
     this.logger.log('Subscribe to Chat...');
+    this.onJoin();
+    this.onPart();
+    this.onMessage();
+  }
+
+  private onJoin(): void {
     this.chatService.Chat.onJoin((channel: string, username: string) =>
       this.eventEmitter.emit('chatJoinEvent', { channel, username })
     );
+  }
+
+  private onPart(): void {
     this.chatService.Chat.onPart((channel: string, username: string) =>
       this.eventEmitter.emit('chatPartEvent', { channel, username })
     );
+  }
+
+  private onMessage(): void {
     this.chatService.Chat.onMessage(
       (
         channel: string,
@@ -30,8 +42,7 @@ export class BotService {
         message: string,
         msg: TwitchPrivateMessage
       ) =>
-        this.logger.debug({
-          type: 'message',
+        this.eventEmitter.emit('chatMessageEvent', {
           channel,
           username,
           message,

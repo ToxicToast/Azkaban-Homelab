@@ -19,9 +19,10 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice<TcpOptions>(AppModule, {
     transport: Transport.TCP,
     options: {
-      port: environment.PORT,
+      port: environment.port,
     },
   });
+  app.enableShutdownHooks();
   await app.listen();
   Logger.log(`🚀 Twitch-Bot is running`);
 }

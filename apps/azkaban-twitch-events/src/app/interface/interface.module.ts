@@ -17,61 +17,61 @@ const config = [
   {
     provide: 'EXPIRESIN',
     useFactory: () => {
-      return environment.expires_in;
+      return environment.twitch.expires_in;
     },
   },
   {
     provide: 'OBTAINMENTTIMESTAMP',
     useFactory: () => {
-      return environment.obtainment_timestamp;
+      return environment.twitch.obtainment_timestamp;
     },
   },
   {
     provide: 'ACCESSTOKEN',
     useFactory: () => {
-      return environment.access_token;
+      return environment.twitch.access_token;
     },
   },
   {
     provide: 'REFRESHTOKEN',
     useFactory: () => {
-      return environment.refresh_token;
+      return environment.twitch.refresh_token;
     },
   },
   {
     provide: 'SCOPE',
     useFactory: () => {
-      return environment.scope;
+      return environment.twitch.scope;
     },
   },
   {
     provide: 'CLIENTID',
     useFactory: () => {
-      return environment.client_id;
+      return environment.twitch.client_id;
     },
   },
   {
     provide: 'CLIENTSECRET',
     useFactory: () => {
-      return environment.client_secret;
+      return environment.twitch.client_secret;
     },
   },
   {
     provide: 'CHANNELS',
     useFactory: () => {
-      return environment.channels;
+      return environment.twitch.channels;
     },
   },
   {
     provide: 'SUBSCRIPTIONSECRET',
     useFactory: () => {
-      return environment.subscriptionSecret;
+      return environment.twitch.subscriptionSecret;
     },
   },
   {
     provide: 'SUBSCRIPTIONCHANNELID',
     useFactory: () => {
-      return environment.subscriptionChannelId;
+      return environment.twitch.subscriptionChannelId;
     },
   },
 ];

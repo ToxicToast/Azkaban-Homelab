@@ -1,9 +1,13 @@
 import { Controller } from '@nestjs/common';
-import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
+import { EventBus } from '@nestjs/cqrs';
 import { OnEvent } from '@nestjs/event-emitter';
-import { JoinEvent } from '../../application/events/impl/join.event';
-import { PartEvent } from '../../application/events/impl/part.event';
 import { JoinEventDto, PartEventDto } from '../dtos/viewerStatus.dto';
+import { MessageDto } from '../dtos/message.dto';
+import {
+  MessageEvent,
+  PartEvent,
+  JoinEvent,
+} from '../../application/events/impl';
 
 @Controller('bot')
 export class BotController {
@@ -17,5 +21,20 @@ export class BotController {
   @OnEvent('chatPartEvent')
   onPart(payload: PartEventDto): void {
     this.eventBus.publish(new PartEvent(payload.channel, payload.username));
+  }
+
+  @OnEvent('chatMessageEvent')
+  onMessage(payload: MessageDto): void {
+    this.eventBus.publish(
+      new MessageEvent(
+        payload.channel,
+        payload.username,
+        payload.message,
+        payload.msg.id,
+        payload.msg.userInfo.color,
+        payload.msg.userInfo.userId,
+        payload.msg.channelId
+      )
+    );
   }
 }

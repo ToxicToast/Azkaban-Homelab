@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { JoinEvent } from '../impl/join.event';
+import { JoinEvent } from '../impl';
 import { Logger } from '@nestjs/common';
 
 @EventsHandler(JoinEvent)

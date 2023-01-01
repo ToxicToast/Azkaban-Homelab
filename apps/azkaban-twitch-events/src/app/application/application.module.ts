@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@azkaban/shared';
-import { ChannelSaga, StreamSaga, ViewerSaga } from './sagas';
+import { AuditSaga, ChannelSaga, StreamSaga, ViewerSaga } from './sagas';
 import {
   FollowerHandler,
   OfflineHandler,
@@ -18,7 +18,7 @@ const eventHandlers = [
   RaidHandler,
   FollowerHandler,
 ];
-const sagas = [ChannelSaga, StreamSaga, ViewerSaga];
+const sagas = [ChannelSaga, StreamSaga, ViewerSaga, AuditSaga];
 
 @Module({
   imports: [CqrsModule],
