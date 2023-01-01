@@ -31,10 +31,16 @@ jobs:
         run: yarn run nx workspace-lint
 
       - name: Lint Apps
-        run: yarn run affected:lint
+        run: yarn run affected:lint --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD  }}
+
+      - name: Unit-Test Apps
+        run: yarn run affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD  }}
+
+      - name: e2e-Test Apps
+        run: yarn run affected:e2e --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD  }}
 
       - name: Build Apps
-        run: yarn run affected:build
+        run: yarn run affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD  }}
 
       - name: No Outdated Packages
         if: github.ref == 'refs/heads/main'
