@@ -46,6 +46,7 @@ export class MesssageRepository implements Repository<MessageAggregate> {
     channel_id: string
   ): Promise<Nullable<Array<MessageAggregate>>> {
     try {
+      Logger.debug({ channel_id });
       return null;
     } catch (e) {
       this.logger.error(e);
@@ -54,6 +55,7 @@ export class MesssageRepository implements Repository<MessageAggregate> {
 
   findByUserId(user_id: string): Promise<Nullable<Array<MessageAggregate>>> {
     try {
+      Logger.debug({ user_id });
       return null;
     } catch (e) {
       this.logger.error(e);
@@ -62,6 +64,7 @@ export class MesssageRepository implements Repository<MessageAggregate> {
 
   findByMessageId(message_id: string): Promise<Nullable<MessageAggregate>> {
     try {
+      Logger.debug({ message_id });
       return null;
     } catch (e) {
       this.logger.error(e);

@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { EventSubWsListener } from '@twurple/eventsub-ws';
 import { ApiService } from './api.service';
 import { EventSubHttpListener } from '@twurple/eventsub-http';

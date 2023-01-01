@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ICommand, ofType, Saga } from '@nestjs/cqrs';
+import { ofType, Saga } from '@nestjs/cqrs';
 import { map, Observable } from 'rxjs';
 import { FollowerEvent } from '../events/impl';
 

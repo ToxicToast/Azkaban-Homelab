@@ -1,9 +1,9 @@
-import { Domain, Mapper } from '@azkaban/shared';
+import { Domain, Mapper } from '../interfaces';
 import { Repository as TypeRepository } from 'typeorm/repository/Repository';
 
-type MapperType = Mapper<any, any>;
-type DomainType = Domain<any>;
-type RepositoryType = TypeRepository<any>;
+type MapperType = Mapper<unknown, unknown>;
+type DomainType = Domain<unknown>;
+type RepositoryType = TypeRepository<unknown>;
 
 export async function SaveEntityFunc<
   Mapper extends MapperType,
