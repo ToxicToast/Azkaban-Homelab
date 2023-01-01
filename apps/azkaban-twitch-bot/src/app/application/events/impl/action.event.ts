@@ -1,7 +1,7 @@
 import { IEvent } from '@nestjs/cqrs';
 import { TwitchPrivateMessage } from '@twurple/chat/lib/commands/TwitchPrivateMessage';
 
-export class MessageEvent implements IEvent {
+export class ActionEvent implements IEvent {
   constructor(
     public readonly channel: string,
     public readonly username: string,

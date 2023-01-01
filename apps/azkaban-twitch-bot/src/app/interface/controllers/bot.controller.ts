@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Logger } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
 import { OnEvent } from '@nestjs/event-emitter';
 import { JoinEventDto, PartEventDto } from '../dtos/viewerStatus.dto';
@@ -7,6 +7,7 @@ import {
   MessageEvent,
   PartEvent,
   JoinEvent,
+  ActionEvent,
 } from '../../application/events/impl';
 
 @Controller('bot')
@@ -30,11 +31,25 @@ export class BotController {
         payload.channel,
         payload.username,
         payload.message,
-        payload.msg.id,
-        payload.msg.userInfo.color,
-        payload.msg.userInfo.userId,
-        payload.msg.channelId
+        payload.msg
       )
     );
+  }
+
+  @OnEvent('chatActionEvent')
+  onAction(payload: MessageDto): void {
+    this.eventBus.publish(
+      new ActionEvent(
+        payload.channel,
+        payload.username,
+        payload.message,
+        payload.msg
+      )
+    );
+  }
+
+  @OnEvent('*')
+  audit(payload: any): void {
+    Logger.debug({ ...payload }, 'Audit');
   }
 }

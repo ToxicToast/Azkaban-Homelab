@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
-import { MessageFactory } from './factories';
 
-const factories = [MessageFactory];
+const factories = [];
 
 @Module({
   providers: [...factories],

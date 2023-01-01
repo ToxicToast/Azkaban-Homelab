@@ -1,1 +1,1 @@
-export * from './message.aggregate';
+export {};

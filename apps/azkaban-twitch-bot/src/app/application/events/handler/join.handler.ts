@@ -4,10 +4,7 @@ import { Logger } from '@nestjs/common';
 
 @EventsHandler(JoinEvent)
 export class JoinHandler implements IEventHandler<JoinEvent> {
-  private readonly logger: Logger = new Logger(JoinHandler.name);
-
   handle(event: JoinEvent): void {
-    const { channel, username } = event;
-    this.logger.debug({ channel, username });
+    Logger.debug({ event }, JoinHandler.name);
   }
 }

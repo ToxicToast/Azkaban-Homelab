@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@azkaban/shared';
-import { JoinHandler, PartHandler, MessageHandler } from './events/handler';
-import { AuditSaga, MessageSaga } from './sagas';
+import {
+  JoinHandler,
+  PartHandler,
+  MessageHandler,
+  ActionHandler,
+} from './events/handler';
+import { AuditSaga, MessageSaga, ViewerSaga } from './sagas';
 import { InfrastructureModule } from '../infrastructure/infrastructure.module';
-import { CreateMessageHandler } from './commands/handler/createMessage.handler';
 import { DomainModule } from '../domain/domain.module';
 
-const commandHandlers = [CreateMessageHandler];
+const commandHandlers = [];
 const queryHandlers = [];
-const eventHandlers = [JoinHandler, PartHandler, MessageHandler];
-const sagas = [AuditSaga, MessageSaga];
+const eventHandlers = [JoinHandler, PartHandler, MessageHandler, ActionHandler];
+const sagas = [AuditSaga, MessageSaga, ViewerSaga];
 
 @Module({
   imports: [CqrsModule, InfrastructureModule, DomainModule],

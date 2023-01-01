@@ -1,15 +1,12 @@
 import { Module } from '@nestjs/common';
 import { environment } from '../../environments/environment';
-import { MessageEntity } from './entities';
-import { MesssageRepository } from './repositories';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DomainModule } from '../domain/domain.module';
-import { MessageMapper } from './mappers';
 import { DataSource } from 'typeorm';
 
-const mappers = [MessageMapper];
-const repositories = [MesssageRepository];
-const entities = [MessageEntity];
+const mappers = [];
+const repositories = [];
+const entities = [];
 const repositoryProviders = [
   {
     provide: 'DATA_SOURCE',
@@ -21,16 +18,10 @@ const repositoryProviders = [
         port: environment.database.port,
         username: environment.database.username,
         password: environment.database.password,
-        database: 'azkaban-twitch-bot',
+        database: 'azkaban-twitch',
         entities,
         synchronize: false,
       }).initialize(),
-  },
-  {
-    provide: 'MESSAGE_REPOSITORY',
-    useFactory: (dataSource: DataSource) =>
-      dataSource.getRepository(MessageEntity),
-    inject: ['DATA_SOURCE'],
   },
 ];
 @Module({
@@ -44,7 +35,7 @@ const repositoryProviders = [
         port: environment.database.port,
         username: environment.database.username,
         password: environment.database.password,
-        database: 'azkaban-twitch-bot',
+        database: 'azkaban-twitch',
         entities,
         synchronize: true,
         retryAttempts: 3,

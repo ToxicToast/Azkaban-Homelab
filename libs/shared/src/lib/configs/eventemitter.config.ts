@@ -1,5 +1,5 @@
 export const eventEmitterConfig = {
-  wildcard: false,
+  wildcard: true,
   delimiter: '.',
   newListener: true,
   removeListener: true,

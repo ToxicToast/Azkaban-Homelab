@@ -1,1 +1,1 @@
-export * from './message.factory';
+export {};
