@@ -34,7 +34,7 @@ jobs:
         run: yarn run affected:lint --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD  }}
 
       - name: Build Apps
-        run: yarn run affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD  }}
+        run: yarn run affected:build
 
       - name: No Outdated Packages
         if: github.ref == 'refs/heads/main'
