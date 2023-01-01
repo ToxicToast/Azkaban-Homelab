@@ -1,6 +1,6 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { FollowerEvent } from '../impl/follower.event';
 import { Logger } from '@nestjs/common';
+import { FollowerEvent } from '../impl';
 
 @EventsHandler(FollowerEvent)
 export class FollowerHandler implements IEventHandler<FollowerEvent> {

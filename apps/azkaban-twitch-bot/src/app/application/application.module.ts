@@ -1,13 +1,19 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@azkaban/shared';
 import { CreateFollowerHandler } from './commands/handler/createFollower.handler';
-import { FollowerHandler } from './events/handler/follower.handler';
-import { EventsSaga } from './sagas/events.saga';
+import { UpdateStreamOnlineHandler } from './commands/handler/updateStreamOnline.handler';
+import { UpdateStreamOfflineCommand } from './commands/impl/updateStreamOffline.command';
+import { JoinHandler } from './events/handler/join.handler';
+import { PartHandler } from './events/handler/part.handler';
 
-const commandHandlers = [CreateFollowerHandler];
+const commandHandlers = [
+  CreateFollowerHandler,
+  UpdateStreamOnlineHandler,
+  UpdateStreamOfflineCommand,
+];
 const queryHandlers = [];
-const eventHandlers = [FollowerHandler];
-const sagas = [EventsSaga];
+const eventHandlers = [JoinHandler, PartHandler];
+const sagas = [];
 
 @Module({
   imports: [CqrsModule],

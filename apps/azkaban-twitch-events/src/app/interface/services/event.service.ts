@@ -1,4 +1,5 @@
 import {
+  Inject,
   Injectable,
   Logger,
   OnModuleDestroy,
@@ -14,14 +15,15 @@ export class EventService implements OnModuleInit, OnModuleDestroy {
 
   constructor(
     private readonly eventSubService: EventSubService,
-    private readonly eventEmitter: EventEmitter2
+    private readonly eventEmitter: EventEmitter2,
+    @Inject('SUBSCRIPTIONCHANNELID')
+    private readonly channelId: string
   ) {}
 
   async onModuleInit(): Promise<void> {
     await this.eventSubService.StaticEventProvider.start()
       .then(() => {
-        this.subscribeToMyEvents();
-        this.subscribeToMaryEvents();
+        this.subscribeToEvents();
         this.logger.debug('Events listening...');
       })
       .catch((error) => this.logger.error(error));
@@ -33,19 +35,18 @@ export class EventService implements OnModuleInit, OnModuleDestroy {
     });
   }
 
-  private async subscribeToMyEvents(): Promise<void> {
-    const userId = '28004350';
-    const follower =
-      await this.eventSubService.StaticEventProvider.subscribeToChannelFollowEvents(
-        userId,
-        async (event) => {
-          this.eventEmitter.emit('channelFollowEvent', {
-            channelId: event.broadcasterId,
-            followerId: event.userId,
-            date: event.followDate,
-          });
-        }
-      );
+  private async subscribeToEvents(): Promise<void> {
+    const userId = this.channelId;
+    await this.eventSubService.StaticEventProvider.subscribeToChannelFollowEvents(
+      userId,
+      async (event) => {
+        this.eventEmitter.emit('channelFollowEvent', {
+          channelId: event.broadcasterId,
+          followerId: event.userId,
+          date: event.followDate,
+        });
+      }
+    );
     //
     await this.eventSubService.StaticEventProvider.subscribeToChannelRaidEventsFrom(
       userId,
@@ -68,39 +69,6 @@ export class EventService implements OnModuleInit, OnModuleDestroy {
         })
     );
     //
-    const online =
-      await this.eventSubService.StaticEventProvider.subscribeToStreamOnlineEvents(
-        userId,
-        async (event) => {
-          const stream = await event.getStream();
-          //
-          this.eventEmitter.emit('streamOnlineEvent', {
-            id: event.id,
-            channelId: event.broadcasterId,
-            type: event.type,
-            date: event.startDate,
-            title: stream?.title ?? '',
-            thumbnail: stream?.thumbnailUrl ?? '',
-          });
-        }
-      );
-    //
-    await this.eventSubService.StaticEventProvider.subscribeToStreamOfflineEvents(
-      userId,
-      async (event) => {
-        const broadcaster = await event.getBroadcaster();
-        //
-        this.eventEmitter.emit('streamOfflineEvent', {
-          broadcasterId: event.broadcasterId,
-          broadcasterType: broadcaster?.broadcasterType,
-          displayName: broadcaster?.displayName,
-          type: broadcaster?.type,
-        });
-      }
-    );
-  }
-  private async subscribeToMaryEvents(): Promise<void> {
-    const userId = '47834860';
     await this.eventSubService.StaticEventProvider.subscribeToStreamOnlineEvents(
       userId,
       async (event) => {
@@ -116,6 +84,7 @@ export class EventService implements OnModuleInit, OnModuleDestroy {
         });
       }
     );
+    //
     await this.eventSubService.StaticEventProvider.subscribeToStreamOfflineEvents(
       userId,
       async (event) => {

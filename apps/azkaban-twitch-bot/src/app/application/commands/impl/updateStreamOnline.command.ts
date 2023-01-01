@@ -1,6 +1,6 @@
 import { ICommand } from '@nestjs/cqrs';
 
-export class UpdateStreamStatusCommand implements ICommand {
+export class UpdateStreamOnlineCommand implements ICommand {
   constructor(
     public readonly id: string,
     public readonly channelId: string,

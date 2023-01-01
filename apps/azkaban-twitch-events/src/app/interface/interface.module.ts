@@ -1,4 +1,3 @@
-import { ApplicationModule } from '../application/application.module';
 import {
   ApiService,
   AuthService,
@@ -9,9 +8,10 @@ import {
   EventemitterModule,
 } from '@azkaban/shared';
 import { environment } from '../../environments/environment';
-import { BotService } from './services/bot.service';
 import { Module } from '@nestjs/common';
-import { BotController } from './controllers/bot.controller';
+import { EventService } from './services/event.service';
+import { EventController } from './controllers/event.controller';
+import { ApplicationModule } from '../application/application.module';
 
 const config = [
   {
@@ -68,17 +68,23 @@ const config = [
       return environment.subscriptionSecret;
     },
   },
+  {
+    provide: 'SUBSCRIPTIONCHANNELID',
+    useFactory: () => {
+      return environment.subscriptionChannelId;
+    },
+  },
 ];
 @Module({
   imports: [HealthModule, CqrsModule, EventemitterModule, ApplicationModule],
-  controllers: [BotController],
+  controllers: [EventController],
   providers: [
     ...config,
     ChatService,
     ApiService,
     EventSubService,
     AuthService,
-    BotService,
+    EventService,
   ],
 })
 export class InterfaceModule {}
