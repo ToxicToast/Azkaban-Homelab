@@ -5,7 +5,6 @@ import { MesssageRepository } from '../../../infrastructure/repositories';
 import { Nullable } from '@azkaban/shared';
 import { MessageModel } from '../../../domain/models';
 import { v4 as uuidv4 } from 'uuid';
-import { Logger } from '@nestjs/common';
 
 @CommandHandler(CreateMessageCommand)
 export class CreateMessageHandler

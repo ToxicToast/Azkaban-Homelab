@@ -7,11 +7,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
-import {
-  MicroserviceOptions,
-  TcpOptions,
-  Transport,
-} from '@nestjs/microservices';
+import { TcpOptions, Transport } from '@nestjs/microservices';
 import { environment } from './environments/environment';
 
 async function bootstrap() {
