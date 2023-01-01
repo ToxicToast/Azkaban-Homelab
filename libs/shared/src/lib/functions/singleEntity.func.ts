@@ -1,4 +1,5 @@
-import { Domain, Mapper, Nullable } from '@azkaban/shared';
+import { Domain, Mapper } from '../interfaces';
+import { Nullable } from '../types';
 import { Repository as TypeRepository } from 'typeorm/repository/Repository';
 
 type MapperType = Mapper<unknown, unknown>;

@@ -49,7 +49,7 @@ export class BotController {
   }
 
   @OnEvent('*')
-  audit(payload: any): void {
+  audit(payload): void {
     Logger.debug({ ...payload }, 'Audit');
   }
 }
