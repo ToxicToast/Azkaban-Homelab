@@ -48,8 +48,58 @@ export class BotController {
     );
   }
 
-  @OnEvent('*')
-  audit(payload): void {
-    Logger.debug({ ...payload }, 'Audit');
+  @OnEvent('chatBanEvent')
+  onBan(payload): void {
+    Logger.debug({ ...payload }, 'onBan');
+  }
+
+  @OnEvent('chatClearEvent')
+  onClear(payload): void {
+    Logger.debug({ ...payload }, 'onClear');
+  }
+
+  @OnEvent('chatDisconnectEvent')
+  onDisconnect(payload): void {
+    Logger.debug({ ...payload }, 'onDisconnect');
+  }
+
+  @OnEvent('chatConnectEvent')
+  onConnect(payload): void {
+    Logger.debug({ ...payload }, 'onConnect');
+  }
+
+  @OnEvent('chatGiftPaidUpgradeEvent')
+  onGiftPaidUpgrade(payload): void {
+    Logger.debug({ ...payload }, 'onGiftPaidUpgrade');
+  }
+
+  @OnEvent('chatRaidEvent')
+  onRaid(payload): void {
+    Logger.debug({ ...payload }, 'onRaid');
+  }
+
+  @OnEvent('chatResubEvent')
+  onResub(payload): void {
+    Logger.debug({ ...payload }, 'onResub');
+  }
+
+  @OnEvent('chatSubGiftEvent')
+  onSubGift(payload): void {
+    Logger.debug({ ...payload }, 'onSubGift');
+  }
+
+  @OnEvent('chatCommunitySubEvent')
+  onCommunitySub(payload): void {
+    Logger.debug({ ...payload }, 'onCommunitySub');
+  }
+
+  @OnEvent('chatSubEvent')
+  onSub(payload): void {
+    Logger.debug({ ...payload }, 'onSub');
+  }
+
+  @OnEvent('chatTimeoutEvent')
+  onTimeout(payload): void {
+    Logger.debug({ ...payload }, 'onTimeout');
   }
 }
