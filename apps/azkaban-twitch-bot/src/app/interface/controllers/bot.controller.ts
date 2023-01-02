@@ -1,14 +1,29 @@
 import { Controller, Logger } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
 import { OnEvent } from '@nestjs/event-emitter';
-import { JoinEventDto, PartEventDto } from '../dtos/viewerStatus.dto';
-import { MessageDto } from '../dtos/message.dto';
+import {
+  BanEventDto,
+  JoinEventDto,
+  PartEventDto,
+  ResubEventDto,
+  SubEventDto,
+  SubGiftEventDto,
+  TimeoutEventDto,
+} from '../dtos/viewerStatus.dto';
+import { ActionEventDto, MessageEventDto } from '../dtos/message.dto';
 import {
   MessageEvent,
   PartEvent,
   JoinEvent,
   ActionEvent,
 } from '../../application/events/impl';
+import {
+  ChatClearEventDto,
+  CommunitySubEventDto,
+  DisconnectEventDto,
+  GiftPaidUpgradeEventDto,
+  RaidEventDto,
+} from '../dtos/chat.dto';
 
 @Controller('bot')
 export class BotController {
@@ -25,7 +40,7 @@ export class BotController {
   }
 
   @OnEvent('chatMessageEvent')
-  onMessage(payload: MessageDto): void {
+  onMessage(payload: MessageEventDto): void {
     this.eventBus.publish(
       new MessageEvent(
         payload.channel,
@@ -37,7 +52,7 @@ export class BotController {
   }
 
   @OnEvent('chatActionEvent')
-  onAction(payload: MessageDto): void {
+  onAction(payload: ActionEventDto): void {
     this.eventBus.publish(
       new ActionEvent(
         payload.channel,
@@ -49,57 +64,57 @@ export class BotController {
   }
 
   @OnEvent('chatBanEvent')
-  onBan(payload): void {
+  onBan(payload: BanEventDto): void {
     Logger.debug({ ...payload }, 'onBan');
   }
 
   @OnEvent('chatClearEvent')
-  onClear(payload): void {
+  onClear(payload: ChatClearEventDto): void {
     Logger.debug({ ...payload }, 'onClear');
   }
 
   @OnEvent('chatDisconnectEvent')
-  onDisconnect(payload): void {
+  onDisconnect(payload: DisconnectEventDto): void {
     Logger.debug({ ...payload }, 'onDisconnect');
   }
 
   @OnEvent('chatConnectEvent')
-  onConnect(payload): void {
-    Logger.debug({ ...payload }, 'onConnect');
+  onConnect(): void {
+    Logger.debug('onConnect');
   }
 
   @OnEvent('chatGiftPaidUpgradeEvent')
-  onGiftPaidUpgrade(payload): void {
+  onGiftPaidUpgrade(payload: GiftPaidUpgradeEventDto): void {
     Logger.debug({ ...payload }, 'onGiftPaidUpgrade');
   }
 
   @OnEvent('chatRaidEvent')
-  onRaid(payload): void {
+  onRaid(payload: RaidEventDto): void {
     Logger.debug({ ...payload }, 'onRaid');
   }
 
   @OnEvent('chatResubEvent')
-  onResub(payload): void {
+  onResub(payload: ResubEventDto): void {
     Logger.debug({ ...payload }, 'onResub');
   }
 
   @OnEvent('chatSubGiftEvent')
-  onSubGift(payload): void {
+  onSubGift(payload: SubGiftEventDto): void {
     Logger.debug({ ...payload }, 'onSubGift');
   }
 
   @OnEvent('chatCommunitySubEvent')
-  onCommunitySub(payload): void {
+  onCommunitySub(payload: CommunitySubEventDto): void {
     Logger.debug({ ...payload }, 'onCommunitySub');
   }
 
   @OnEvent('chatSubEvent')
-  onSub(payload): void {
+  onSub(payload: SubEventDto): void {
     Logger.debug({ ...payload }, 'onSub');
   }
 
   @OnEvent('chatTimeoutEvent')
-  onTimeout(payload): void {
+  onTimeout(payload: TimeoutEventDto): void {
     Logger.debug({ ...payload }, 'onTimeout');
   }
 }
