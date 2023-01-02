@@ -48,7 +48,7 @@
     "tslib": "^2.4.1"
   },
   "devDependencies": {
-    "@nestjs/schematics": "^9.0.3",
+    "@nestjs/schematics": "^9.0.4",
     "@nestjs/testing": "^9.2.1",
     "@nrwl/cli": "15.4.1",
     "@nrwl/eslint-plugin-nx": "15.4.1",
