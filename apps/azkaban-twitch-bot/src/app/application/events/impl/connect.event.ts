@@ -1,5 +1,3 @@
 import { IEvent } from '@nestjs/cqrs';
 
-export class ConnectEvent implements IEvent {
-  constructor() {}
-}
+export class ConnectEvent implements IEvent {}

@@ -1,4 +1,4 @@
-import { Controller, Logger } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
 import { OnEvent } from '@nestjs/event-emitter';
 import {
