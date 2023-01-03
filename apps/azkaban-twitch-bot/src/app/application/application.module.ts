@@ -10,6 +10,12 @@ import {
   ConnectHandler,
   DisconnectHandler,
   GiftPaidUpgradeHandler,
+  CommunitySubHandler,
+  RaidHandler,
+  ResubHandler,
+  SubHandler,
+  SubGiftHandler,
+  TimeoutHandler,
 } from './events/handler';
 import { AuditSaga, MessageSaga, ViewerSaga } from './sagas';
 import { InfrastructureModule } from '../infrastructure/infrastructure.module';
@@ -27,6 +33,12 @@ const eventHandlers = [
   ConnectHandler,
   DisconnectHandler,
   GiftPaidUpgradeHandler,
+  CommunitySubHandler,
+  RaidHandler,
+  ResubHandler,
+  SubHandler,
+  SubGiftHandler,
+  TimeoutHandler,
 ];
 const sagas = [AuditSaga, MessageSaga, ViewerSaga];
 
