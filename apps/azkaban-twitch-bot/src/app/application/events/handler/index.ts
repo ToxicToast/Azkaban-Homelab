@@ -2,3 +2,8 @@ export * from './join.handler';
 export * from './part.handler';
 export * from './message.handler';
 export * from './action.handler';
+export * from './ban.handler';
+export * from './chatclear.handler';
+export * from './connect.handler';
+export * from './disconnect.handler';
+export * from './gitpaidupgrade.handler';

@@ -25,7 +25,6 @@ export class BotService {
   }
 
   private chatEvents(): void {
-    this.logger.log('Subscribe to Chat...');
     this.onJoin();
     this.onPart();
     this.onMessage();

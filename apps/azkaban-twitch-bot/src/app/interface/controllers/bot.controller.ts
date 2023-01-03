@@ -16,6 +16,17 @@ import {
   PartEvent,
   JoinEvent,
   ActionEvent,
+  BanEvent,
+  ChatClearEvent,
+  DisconnectEvent,
+  ConnectEvent,
+  GiftPaidUpgradeEvent,
+  RaidEvent,
+  ResubEvent,
+  SubGiftEvent,
+  CommunitySubEvent,
+  SubEvent,
+  TimeoutEvent,
 } from '../../application/events/impl';
 import {
   ChatClearEventDto,
@@ -24,7 +35,6 @@ import {
   GiftPaidUpgradeEventDto,
   RaidEventDto,
 } from '../dtos/chat.dto';
-
 @Controller('bot')
 export class BotController {
   constructor(private readonly eventBus: EventBus) {}
@@ -65,56 +75,109 @@ export class BotController {
 
   @OnEvent('chatBanEvent')
   onBan(payload: BanEventDto): void {
-    Logger.debug({ ...payload }, 'onBan');
+    this.eventBus.publish(
+      new BanEvent(payload.channel, payload.username, payload.msg)
+    );
   }
 
   @OnEvent('chatClearEvent')
   onClear(payload: ChatClearEventDto): void {
-    Logger.debug({ ...payload }, 'onClear');
+    this.eventBus.publish(new ChatClearEvent(payload.channel, payload.msg));
   }
 
   @OnEvent('chatDisconnectEvent')
   onDisconnect(payload: DisconnectEventDto): void {
-    Logger.debug({ ...payload }, 'onDisconnect');
+    this.eventBus.publish(
+      new DisconnectEvent(payload.manually, payload.reason)
+    );
   }
 
   @OnEvent('chatConnectEvent')
   onConnect(): void {
-    Logger.debug('onConnect');
+    this.eventBus.publish(new ConnectEvent());
   }
 
   @OnEvent('chatGiftPaidUpgradeEvent')
   onGiftPaidUpgrade(payload: GiftPaidUpgradeEventDto): void {
-    Logger.debug({ ...payload }, 'onGiftPaidUpgrade');
+    this.eventBus.publish(
+      new GiftPaidUpgradeEvent(
+        payload.channel,
+        payload.username,
+        payload.subInfo,
+        payload.msg
+      )
+    );
   }
 
   @OnEvent('chatRaidEvent')
   onRaid(payload: RaidEventDto): void {
-    Logger.debug({ ...payload }, 'onRaid');
+    this.eventBus.publish(
+      new RaidEvent(
+        payload.channel,
+        payload.username,
+        payload.raidInfo,
+        payload.msg
+      )
+    );
   }
 
   @OnEvent('chatResubEvent')
   onResub(payload: ResubEventDto): void {
-    Logger.debug({ ...payload }, 'onResub');
+    this.eventBus.publish(
+      new ResubEvent(
+        payload.channel,
+        payload.username,
+        payload.subInfo,
+        payload.msg
+      )
+    );
   }
 
   @OnEvent('chatSubGiftEvent')
   onSubGift(payload: SubGiftEventDto): void {
-    Logger.debug({ ...payload }, 'onSubGift');
+    this.eventBus.publish(
+      new SubGiftEvent(
+        payload.channel,
+        payload.username,
+        payload.subInfo,
+        payload.msg
+      )
+    );
   }
 
   @OnEvent('chatCommunitySubEvent')
   onCommunitySub(payload: CommunitySubEventDto): void {
-    Logger.debug({ ...payload }, 'onCommunitySub');
+    this.eventBus.publish(
+      new CommunitySubEvent(
+        payload.channel,
+        payload.username,
+        payload.subInfo,
+        payload.msg
+      )
+    );
   }
 
   @OnEvent('chatSubEvent')
   onSub(payload: SubEventDto): void {
-    Logger.debug({ ...payload }, 'onSub');
+    this.eventBus.publish(
+      new SubEvent(
+        payload.channel,
+        payload.username,
+        payload.subInfo,
+        payload.msg
+      )
+    );
   }
 
   @OnEvent('chatTimeoutEvent')
   onTimeout(payload: TimeoutEventDto): void {
-    Logger.debug({ ...payload }, 'onTimeout');
+    this.eventBus.publish(
+      new TimeoutEvent(
+        payload.channel,
+        payload.username,
+        payload.duration,
+        payload.msg
+      )
+    );
   }
 }
