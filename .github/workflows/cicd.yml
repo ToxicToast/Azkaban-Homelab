@@ -69,8 +69,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Echo Release
+        run: echo ${{ steps.release.outputs }}
+
       - name: Build and push (Gateway)
-        #if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -80,7 +83,7 @@ jobs:
           build-args: "project=azkaban-gateway"
 
       - name: Build and push (Twitch-Bot)
-        #if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -90,7 +93,7 @@ jobs:
           build-args: "project=azkaban-twitch-bot"
 
       - name: Build and push (Twitch-Events)
-        #if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
           context: .
