@@ -19,7 +19,7 @@ export const environment = {
   },
   database: {
     host: process.env.database_host ?? 'localhost',
-    port: Number(process.env.database_host) ?? 3306,
+    port: Number(process.env.database_port) ?? 3306,
     username: process.env.database_username ?? 'root',
     password: process.env.database_password ?? 'root',
   },
