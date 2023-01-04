@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
+    "build": "nx build",
     "start": "nx serve",
     "start:gateway": "nx serve azkaban-gateway",
     "start:twitch-bot": "nx serve azkaban-twitch-bot",
