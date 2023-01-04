@@ -1,8 +1,10 @@
-import * as process from 'process';
-
 export const environment = {
   production: false,
-  port: Number(process.env.PORT) ?? 3333,
+  port: Number(process.env.port ?? 3334),
+  gateway: {
+    host: process.env.gateway_host ?? 'http://localhost',
+    port: Number(process.env.gateway_port ?? 3333),
+  },
   twtich: {
     client_id: process.env.client_id ?? '',
     client_secret: process.env.client_secret ?? '',

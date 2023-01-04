@@ -5,6 +5,7 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
+    "start:gateway": "nx serve azkaban-gateway",
     "start:twitch-bot": "nx serve azkaban-twitch-bot",
     "start:twitch-events": "nx serve azkaban-twitch-events",
     "test": "nx test",
@@ -48,6 +49,7 @@
     "@mikro-orm/nestjs": "^5.1.5",
     "@mikro-orm/postgresql": "^5.6.3",
     "@mikro-orm/sqlite": "^5.6.3",
+    "@nestjs/axios": "^1.0.1",
     "@nestjs/common": "^9.2.1",
     "@nestjs/core": "^9.2.1",
     "@nestjs/cqrs": "^9.0.1",
@@ -143,4 +145,3 @@
   },
   "coverageDirectory": "../coverage"
 }
-

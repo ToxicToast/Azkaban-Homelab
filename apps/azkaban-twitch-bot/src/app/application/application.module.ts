@@ -17,11 +17,13 @@ import {
   SubGiftHandler,
   TimeoutHandler,
 } from './events/handler';
-import { AuditSaga, MessageSaga, ViewerSaga } from './sagas';
+import { AuditSaga, EventsSaga, SocketSaga } from './sagas';
 import { InfrastructureModule } from '../infrastructure/infrastructure.module';
 import { DomainModule } from '../domain/domain.module';
+import { HttpModule } from '@nestjs/axios';
+import { SendSocketHandler } from './commands/handler';
 
-const commandHandlers = [];
+const commandHandlers = [SendSocketHandler];
 const queryHandlers = [];
 const eventHandlers = [
   JoinHandler,
@@ -40,10 +42,10 @@ const eventHandlers = [
   SubGiftHandler,
   TimeoutHandler,
 ];
-const sagas = [AuditSaga, MessageSaga, ViewerSaga];
+const sagas = [AuditSaga, EventsSaga, SocketSaga];
 
 @Module({
-  imports: [CqrsModule, InfrastructureModule, DomainModule],
+  imports: [CqrsModule, InfrastructureModule, DomainModule, HttpModule],
   providers: [...commandHandlers, ...queryHandlers, ...eventHandlers, ...sagas],
   exports: [...commandHandlers, ...queryHandlers, ...eventHandlers, ...sagas],
 })
