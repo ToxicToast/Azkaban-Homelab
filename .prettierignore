@@ -7,3 +7,4 @@
 /.github/workflows/*.yml
 /.github/*.yml
 *.json
+*.md
