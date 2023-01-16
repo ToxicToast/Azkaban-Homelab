@@ -16,3 +16,7 @@ export * from './IntValueObject';
 export * from './StringValueObject';
 export * from './UuidValueObject';
 export * from './ValueObject';
+export * from './CommandHandlers';
+export * from './InMemoryCommandBus';
+export * from './InMemoryQueryBus';
+export * from './QueryHandlers';
