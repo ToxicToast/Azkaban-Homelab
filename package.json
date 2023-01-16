@@ -26,7 +26,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "release": "npx semantic-release",
-    "changelog": "auto-changelog --output README.md --template keepachangelog",
+    "changelog": "auto-changelog --output CHANGELOG.md --template keepachangelog",
     "outdated": "npm outdated",
     "update:all": "npx npm-check-updates -u",
     "build:all": "nx run-many --target=build --all",
@@ -59,7 +59,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tslib": "^2.4.1",
-    "typeorm": "^0.3.11"
+    "typeorm": "^0.3.11",
+    "uuid-validate": "^0.0.3"
   },
   "devDependencies": {
     "@nestjs/schematics": "^9.0.4",
@@ -88,6 +89,7 @@
     "@twurple/pubsub": "^5.3.1",
     "@types/jest": "29.2.5",
     "@types/node": "18.11.18",
+    "@types/uuid-validate": "^0.0.1",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "auto-changelog": "^2.4.0",
@@ -143,4 +145,3 @@
   },
   "coverageDirectory": "../coverage"
 }
-

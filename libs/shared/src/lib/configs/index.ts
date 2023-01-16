@@ -1,1 +1,1 @@
-export * from './eventemitter.config';
+export {};
