@@ -1718,17 +1718,17 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@mikro-orm/core@^5.6.6":
-  version "5.6.6"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-5.6.6.tgz#fab3dbe4c0ad573a101f8b1ff517006c54709beb"
-  integrity sha512-L5PPwYz2mwlhmaqcEDBZxKdf3ssV25lZWWGXJcKnszf13IUVY22TUOLYmP/Fv8wqvQ/kJzhSxzhWrDuJInMYtw==
+"@mikro-orm/core@^5.6.7":
+  version "5.6.7"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-5.6.7.tgz#e0b101790affd28be7dca95ed7d870a898358e67"
+  integrity sha512-XLCY3S10nz7uUFGTFypUuaO48cQAhCUiSsQBxpqqhlOqVz6yxGYdqAe7SmMKuplmpOoVL8OGDZrULzd0bIjtYA==
   dependencies:
     acorn-loose "8.3.0"
     acorn-walk "8.2.0"
     dotenv "16.0.3"
     fs-extra "11.1.0"
     globby "11.1.0"
-    mikro-orm "~5.6.6"
+    mikro-orm "~5.6.7"
     reflect-metadata "0.1.13"
 
 "@mikro-orm/knex@~5.6.6":
@@ -8414,10 +8414,10 @@ micromatch@^4.0.0, micromatch@^4.0.2, micromatch@^4.0.4:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
-mikro-orm@~5.6.6:
-  version "5.6.6"
-  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-5.6.6.tgz#6190556038b813c3f5512dddc788f8dce869b5a9"
-  integrity sha512-ckRwQ+0O6o6q80UzqKr/1HK8iecJXGNk4a5p27yLOU8GYwBXH5kGIAQLB47O6rjMiDJdOzle7Fi4VG1YNF9gVg==
+mikro-orm@~5.6.7:
+  version "5.6.7"
+  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-5.6.7.tgz#2bbdcfc27d64ac5e4be4d146d84c5450a64e8c77"
+  integrity sha512-mxkg+BDXmuQh4PYlWkv0Yysy33Yvg/31BZN4UWWZpV9gcLMYPQcaEF8qfSW7sMbrdNSJcvqf2MX6etmIARHJ9A==
 
 mime-db@1.52.0, "mime-db@>= 1.43.0 < 2":
   version "1.52.0"
