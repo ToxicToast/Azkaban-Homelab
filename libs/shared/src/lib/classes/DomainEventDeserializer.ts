@@ -1,13 +1,17 @@
 import { DomainEventClass } from '../types';
 import { DomainEventJSON } from '../enums';
 import { DomainEventSubscribers } from './DomainEventSubscribers';
+import { DomainEventSubscriber } from '../interfaces';
+import { DomainEvent } from './DomainEvent';
 
 export class DomainEventDeserializer extends Map<string, DomainEventClass> {
   static configure(subscribers: DomainEventSubscribers) {
     const mapping = new DomainEventDeserializer();
-    subscribers.items.forEach((subscriber) => {
-      subscriber.subscribedTo().forEach(mapping.registerEvent.bind(mapping));
-    });
+    subscribers.items.forEach(
+      (subscriber: DomainEventSubscriber<DomainEvent>) => {
+        subscriber.subscribeTo().forEach(mapping.registerEvent.bind(mapping));
+      }
+    );
     return mapping;
   }
 
