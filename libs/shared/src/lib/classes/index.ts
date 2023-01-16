@@ -20,3 +20,6 @@ export * from './CommandHandlers';
 export * from './InMemoryCommandBus';
 export * from './InMemoryQueryBus';
 export * from './QueryHandlers';
+export * from './DomainEventDeserializer';
+export * from './DomainEventJsonSerializer';
+export * from './DomainEventSubscribers';

@@ -1,5 +1,6 @@
 import { QueryBus, Response } from '../interfaces';
 import { Query } from './Query';
+import { QueryHandlers } from './QueryHandlers';
 
 export class InMemoryQueryBus implements QueryBus {
   constructor(private queryHandlersInformation: QueryHandlers) {}
