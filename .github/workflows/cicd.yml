@@ -74,7 +74,7 @@ jobs:
 
       - name: Build and push (Gateway)
         if: github.ref == 'refs/heads/main'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile
@@ -84,7 +84,7 @@ jobs:
 
       - name: Build and push (Twitch-Bot)
         if: github.ref == 'refs/heads/main'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile
@@ -94,7 +94,7 @@ jobs:
 
       - name: Build and push (Twitch-Events)
         if: github.ref == 'refs/heads/main'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile
