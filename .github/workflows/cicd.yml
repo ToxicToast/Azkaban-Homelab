@@ -57,13 +57,13 @@ jobs:
         run: echo ${{ steps.release.outputs }}
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2.1.37
+        uses: github/codeql-action/init@v2.2.6
         with:
           languages: 'typescript'
           external-repository-token: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2.1.37
+        uses: github/codeql-action/analyze@v2.2.6
 
       - name: Docker Login
         if: github.ref == 'refs/heads/main'
